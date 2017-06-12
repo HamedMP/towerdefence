@@ -19,7 +19,14 @@ ENTETES = $(wildcard src/*.h src/*/*.h src/*/*/*.h)
 OBJS = ${SOURCES:.cpp=.o}
 includes = $(wildcard src/*.h)
 
+mac: ${OBJS}
+	${CCMAC} ${OBJS} -o ${EXE} ${LDFLAGS} ${LIBS}
 
+linux: ${OBJS}
+	${CC} ${OBJS} -o ${EXE} ${LDFLAGS} ${LIBSLINUX}
+
+windows: ${OBJS}
+	${CC} ${OBJS} -o ${EXE} ${LDFLAGS} ${LIBSWINDOWS}
 
 ifdef DEBUG
 	CFLAGS += -g
@@ -35,5 +42,10 @@ all:	${OBJS}
 run:
 	./main
 
-clean :
-	/bin/rm -f *.o *.gch  *~ src/*.o src/*/*.o src/*/*/*.o main
+.PHONY: clean veryclean
+
+clean : #pas de dependance
+	/bin/rm -f *.o *.gch *.bak *~ src/*.o src/*/*.o src/*/*/*.o
+
+veryclean : clean
+	/bin/rm -f ${EXE}
