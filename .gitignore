@@ -1,0 +1,15 @@
+# C compiled files
+*.o
+
+# QTCreator files
+*.pro
+*.pro.user
+
+# CLion files
+.idea/
+cmake-build-debug
+
+# CMake built files 
+build/
+cmake-build-debug/
+CMakeLists.txt.user
